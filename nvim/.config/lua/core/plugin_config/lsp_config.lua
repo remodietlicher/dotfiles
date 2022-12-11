@@ -11,12 +11,11 @@ local on_attach = function(_, _)
   vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, {})
   vim.keymap.set('n', 'gr', require('telescope.builtin').lsp_references, {})
   vim.keymap.set('n', 'K', vim.lsp.buf.hover, {})
-
-  require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
 end
 
 require("lspconfig").sumneko_lua.setup {
   on_attach = on_attach,
+  capabilities = require('cmp_nvim_lsp').default_capabilities(),
   settings = {
     Lua = {
       diagnostics = {
@@ -28,13 +27,16 @@ require("lspconfig").sumneko_lua.setup {
 }
 
 require("lspconfig").solargraph.setup {
-  on_attach = on_attach
+  on_attach = on_attach,
+  capabilities = require('cmp_nvim_lsp').default_capabilities()
 }
 
 require("lspconfig").tsserver.setup {
-  on_attach = on_attach
+  on_attach = on_attach,
+  capabilities = require('cmp_nvim_lsp').default_capabilities()
 }
 
 require("lspconfig").pyright.setup {
-  on_attach = on_attach
+  on_attach = on_attach,
+  capabilities = require('cmp_nvim_lsp').default_capabilities()
 }

@@ -42,7 +42,7 @@ cmp.setup({
   sources = cmp.config.sources({
     { name = 'nvim_lsp' },
     { name = 'buffer' },
-    { name = 'path' },
+    { name = 'path' }
   }),
   formatting = {
     format = require("lspkind").cmp_format({
@@ -54,7 +54,7 @@ cmp.setup({
         path = "[path]",
         nvim_lua = "[Lua]",
         luasnip = "[LuaSnip]",
-        cmdline = "[CmdLine]",
+        cmdline = "[CmdLine]"
       },
     }),
   },
