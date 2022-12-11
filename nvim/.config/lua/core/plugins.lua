@@ -40,13 +40,24 @@ return require('packer').startup(function(use)
     'nvim-telescope/telescope-fzf-native.nvim',
     run = 'make'
   }
+  use { 'folke/which-key.nvim' }
+  use { 'tpope/vim-fugitive' }
+  use {'sindrets/diffview.nvim', requires = 'nvim-lua/plenary.nvim'}
   use {
-    'folke/which-key.nvim',
-    config = function()
-       require("which-key").setup{}
-      end
+    'hrsh7th/nvim-cmp',
+    requires = {
+      { "hrsh7th/cmp-buffer" },
+      { "hrsh7th/cmp-path" },
+      { "hrsh7th/cmp-nvim-lua" },
+      { "hrsh7th/cmp-nvim-lsp" },
+      { "onsails/lspkind-nvim" },
+      { "hrsh7th/cmp-cmdline" },
+      { "dmitmel/cmp-cmdline-history" },
+      { "saadparwaiz1/cmp_luasnip" },
+      { 'L3MON4D3/LuaSnip' },
+
+    },
   }
-  use({'tpope/vim-fugitive'})
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
