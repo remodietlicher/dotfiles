@@ -1,7 +1,8 @@
 local cmp = require('cmp')
-local select_opts = {behavior = cmp.SelectBehavior.Select}
 
 -- utility functions for keymaps
+local select_opts = {behavior = cmp.SelectBehavior.Select}
+
 local tab_fun = function(fallback)
   local col = vim.fn.col('.') - 1
 
@@ -22,6 +23,7 @@ local s_tab_fun = function(fallback)
   end
 end
 
+-- general completion setup
 cmp.setup({
   mapping = cmp.mapping.preset.insert({
     ['<C-b>'] = cmp.mapping.scroll_docs(-4),
@@ -53,7 +55,6 @@ cmp.setup({
         nvim_lua = "[Lua]",
         luasnip = "[LuaSnip]",
         cmdline = "[CmdLine]",
-        cmdline_history = "[CmdLineHistory]",
       },
     }),
   },
@@ -79,6 +80,5 @@ cmp.setup.cmdline(':', {
   mapping = cmp.mapping.preset.cmdline(),
   sources = cmp.config.sources({
     { name = 'cmdline' },
-    { name = 'cmdline_history' },
   })
 })

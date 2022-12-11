@@ -52,7 +52,6 @@ return require('packer').startup(function(use)
       { "hrsh7th/cmp-nvim-lsp" },
       { "onsails/lspkind-nvim" },
       { "hrsh7th/cmp-cmdline" },
-      { "dmitmel/cmp-cmdline-history" },
       { "saadparwaiz1/cmp_luasnip" },
       { 'L3MON4D3/LuaSnip' },
 
