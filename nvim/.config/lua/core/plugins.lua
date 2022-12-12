@@ -54,9 +54,9 @@ return require('packer').startup(function(use)
       { "hrsh7th/cmp-cmdline" },
       { "saadparwaiz1/cmp_luasnip" },
       { 'L3MON4D3/LuaSnip' },
-
     },
   }
+  use 'preservim/nerdcommenter'
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
