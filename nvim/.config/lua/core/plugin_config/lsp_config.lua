@@ -1,6 +1,6 @@
 require("mason").setup()
 require("mason-lspconfig").setup({
-  ensure_installed = { "sumneko_lua", "solargraph", "tsserver", "pyright" }
+  ensure_installed = { "sumneko_lua", "tsserver", "pyright" }
 })
 
 local on_attach = function(_, _)
@@ -24,11 +24,6 @@ require("lspconfig").sumneko_lua.setup {
       },
     },
   },
-}
-
-require("lspconfig").solargraph.setup {
-  on_attach = on_attach,
-  capabilities = require('cmp_nvim_lsp').default_capabilities()
 }
 
 require("lspconfig").tsserver.setup {
