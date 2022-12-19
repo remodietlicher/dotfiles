@@ -54,9 +54,21 @@ return require('packer').startup(function(use)
       { "hrsh7th/cmp-cmdline" },
       { "saadparwaiz1/cmp_luasnip" },
       { 'L3MON4D3/LuaSnip' },
+      { "rcarriga/cmp-dap" },
     },
   }
   use 'preservim/nerdcommenter'
+  use 'mfussenegger/nvim-dap'
+  use 'mfussenegger/nvim-dap-python'
+  use {
+    "mxsdev/nvim-dap-vscode-js",
+    requires = {
+      "microsoft/vscode-js-debug",
+      opt = true,
+      run = "npm install --legacy-peer-deps && npm run compile"
+    }
+  }
+  use { "rcarriga/nvim-dap-ui" }
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
