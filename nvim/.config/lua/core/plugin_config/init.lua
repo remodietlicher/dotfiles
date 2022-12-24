@@ -13,4 +13,5 @@ require("core.plugin_config.diffview")
 require("core.plugin_config.nvim-dap-vscode-js")
 require("core.plugin_config.nvim-dap")
 require("core.plugin_config.nvim-dap-ui")
-
+require("core.plugin_config.session")
+require("core.plugin_config.null-ls")
