@@ -15,6 +15,9 @@ return require('packer').startup(function(use)
   use 'wbthomason/packer.nvim'
   use 'nvim-tree/nvim-tree.lua'
   use 'Mofiqul/dracula.nvim'
+  use 'EdenEast/nightfox.nvim'
+  use 'morhetz/gruvbox'
+  use 'folke/tokyonight.nvim'
   use 'nvim-tree/nvim-web-devicons'
   use 'nvim-lualine/lualine.nvim'
   use 'nvim-treesitter/nvim-treesitter'
@@ -33,7 +36,7 @@ return require('packer').startup(function(use)
   }
   use {
 	  'nvim-telescope/telescope.nvim',
-	  tag = '0.1.0',
+	  branch = '0.1.x',
 	  requires = { {'nvim-lua/plenary.nvim'} }
   }
   use {
@@ -54,6 +57,7 @@ return require('packer').startup(function(use)
       { "hrsh7th/cmp-cmdline" },
       { "saadparwaiz1/cmp_luasnip" },
       { 'L3MON4D3/LuaSnip' },
+      { "rafamadriz/friendly-snippets" },
       { "rcarriga/cmp-dap" },
     },
   }
@@ -69,6 +73,7 @@ return require('packer').startup(function(use)
     }
   }
   use { "rcarriga/nvim-dap-ui" }
+  use { 'rmagatti/auto-session' }
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins

@@ -23,6 +23,8 @@ local s_tab_fun = function(fallback)
   end
 end
 
+require("luasnip.loaders.from_vscode").lazy_load()
+
 -- general completion setup
 cmp.setup({
   mapping = cmp.mapping.preset.insert({
@@ -41,6 +43,7 @@ cmp.setup({
   },
   sources = cmp.config.sources({
     { name = 'nvim_lsp' },
+    { name = 'luasnip' },
     { name = 'buffer' },
     { name = 'path' }
   }),
