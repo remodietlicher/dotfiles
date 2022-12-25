@@ -12,18 +12,18 @@ end
 local packer_bootstrap = ensure_packer()
 
 return require("packer").startup(function(use)
-  use("wbthomason/packer.nvim")
-  use("nvim-tree/nvim-tree.lua")
-  use("Mofiqul/dracula.nvim")
-  use("EdenEast/nightfox.nvim")
-  use("morhetz/gruvbox")
-  use("folke/tokyonight.nvim")
-  use("nvim-tree/nvim-web-devicons")
-  use("nvim-lualine/lualine.nvim")
-  use("nvim-treesitter/nvim-treesitter")
-  use("bluz71/vim-nightfly-colors")
-  use("vim-test/vim-test")
-  use("lewis6991/gitsigns.nvim")
+  use({ "wbthomason/packer.nvim" })
+  use({ "nvim-tree/nvim-tree.lua" })
+  use({ "Mofiqul/dracula.nvim" })
+  use({ "EdenEast/nightfox.nvim" })
+  use({ "morhetz/gruvbox" })
+  use({ "folke/tokyonight.nvim" })
+  use({ "nvim-tree/nvim-web-devicons" })
+  use({ "nvim-lualine/lualine.nvim" })
+  use({ "nvim-treesitter/nvim-treesitter" })
+  use({ "bluz71/vim-nightfly-colors" })
+  use({ "vim-test/vim-test" })
+  use({ "lewis6991/gitsigns.nvim" })
   use({
     "phaazon/hop.nvim",
     branch = "v2",
@@ -62,8 +62,8 @@ return require("packer").startup(function(use)
     },
   })
   use("preservim/nerdcommenter")
-  use("mfussenegger/nvim-dap")
-  use("mfussenegger/nvim-dap-python")
+  use({ "mfussenegger/nvim-dap" })
+  use({ "mfussenegger/nvim-dap-python" })
   use({
     "mxsdev/nvim-dap-vscode-js",
     requires = {
