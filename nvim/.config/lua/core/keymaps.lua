@@ -20,7 +20,7 @@ vim.opt.expandtab = true
 -- Case insensitive searching UNLESS /C or capital in search
 vim.o.ignorecase = true
 vim.o.smartcase = true
-vim.keymap.set("n", "<leader>h", ":nohlsearch<CR>", {desc = 'No search highlight'})
+vim.keymap.set("n", "<leader>h", ":nohlsearch<CR>", { desc = "No search highlight" })
 
 -- pane management
 vim.keymap.set("n", "<c-L>", ":vsplit<CR>", { desc = "Split pane vertically" })
