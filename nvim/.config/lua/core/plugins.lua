@@ -18,6 +18,7 @@ return require("packer").startup(function(use)
   use({ "EdenEast/nightfox.nvim" })
   use({ "morhetz/gruvbox" })
   use({ "folke/tokyonight.nvim" })
+  use({ "Mofiqul/vscode.nvim" })
   use({ "nvim-tree/nvim-web-devicons" })
   use({ "nvim-lualine/lualine.nvim" })
   use({ "nvim-treesitter/nvim-treesitter" })
@@ -61,7 +62,7 @@ return require("packer").startup(function(use)
       { "rcarriga/cmp-dap" },
     },
   })
-  use("preservim/nerdcommenter")
+  use({ "preservim/nerdcommenter" })
   use({ "mfussenegger/nvim-dap" })
   use({ "mfussenegger/nvim-dap-python" })
   use({
@@ -76,6 +77,7 @@ return require("packer").startup(function(use)
   use({ "rmagatti/auto-session" })
   use({ "jose-elias-alvarez/null-ls.nvim" })
   use({ "kylechui/nvim-surround" })
+  use({ "rose-pine/neovim" })
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
