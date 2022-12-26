@@ -1,0 +1,3 @@
+[submodule "gnome-terminal"]
+	path = gnome-terminal
+	url = git@github.com:rose-pine/gnome-terminal.git
