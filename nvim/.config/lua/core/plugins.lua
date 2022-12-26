@@ -17,6 +17,7 @@ return require("packer").startup(function(use)
   use({ "Mofiqul/dracula.nvim" })
   use({ "EdenEast/nightfox.nvim" })
   use({ "morhetz/gruvbox" })
+  use({ "rose-pine/neovim" })
   use({ "folke/tokyonight.nvim" })
   use({ "Mofiqul/vscode.nvim" })
   use({ "nvim-tree/nvim-web-devicons" })
@@ -77,7 +78,6 @@ return require("packer").startup(function(use)
   use({ "rmagatti/auto-session" })
   use({ "jose-elias-alvarez/null-ls.nvim" })
   use({ "kylechui/nvim-surround" })
-  use({ "rose-pine/neovim" })
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
