@@ -78,6 +78,7 @@ return require("packer").startup(function(use)
   use({ "rmagatti/auto-session" })
   use({ "jose-elias-alvarez/null-ls.nvim" })
   use({ "kylechui/nvim-surround" })
+  use({ "epwalsh/obsidian.nvim" })
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
