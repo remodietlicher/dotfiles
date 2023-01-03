@@ -33,3 +33,9 @@ vim.keymap.set("n", "<c-l>", "<c-w>l", { desc = "Move pane right" })
 -- navigation
 vim.keymap.set("n", "<a-left>", "<c-O>", { desc = "Go back" })
 vim.keymap.set("n", "<a-right>", "<c-I>", { desc = "Go forward" })
+
+-- put the paste registry to garbage
+vim.keymap.set("v", "<leader>p", '"_dP', { desc = "Put text from visual selection into _ registry" })
+
+-- toggle normal mode in terminal mode
+vim.keymap.set("t", "<leader>tn", "<c-\\><c-n>", { desc = "Enter [N]ormal mode in terminal" })

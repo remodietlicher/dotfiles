@@ -23,8 +23,8 @@ return require("packer").startup(function(use)
   use({ "nvim-tree/nvim-web-devicons" })
   use({ "nvim-lualine/lualine.nvim" })
   use({ "nvim-treesitter/nvim-treesitter" })
+  use({ "nvim-treesitter/nvim-treesitter-context" })
   use({ "bluz71/vim-nightfly-colors" })
-  use({ "vim-test/vim-test" })
   use({ "lewis6991/gitsigns.nvim" })
   use({
     "phaazon/hop.nvim",
@@ -79,6 +79,10 @@ return require("packer").startup(function(use)
   use({ "jose-elias-alvarez/null-ls.nvim" })
   use({ "kylechui/nvim-surround" })
   use({ "epwalsh/obsidian.nvim" })
+  use({
+    "akinsho/toggleterm.nvim",
+    tag = "*",
+  })
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
