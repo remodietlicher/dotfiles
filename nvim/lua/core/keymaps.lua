@@ -38,4 +38,4 @@ vim.keymap.set("n", "<a-right>", "<c-I>", { desc = "Go forward" })
 vim.keymap.set("v", "<leader>p", '"_dP', { desc = "Put text from visual selection into _ registry" })
 
 -- toggle normal mode in terminal mode
-vim.keymap.set("t", "<leader>tn", "<c-\\><c-n>", { desc = "Enter [N]ormal mode in terminal" })
+vim.keymap.set("t", "<c-n>", "<c-\\><c-n>", { desc = "Enter [N]ormal mode in terminal" })
