@@ -75,7 +75,6 @@ return require("packer").startup(function(use)
     },
   })
   use({ "rcarriga/nvim-dap-ui" })
-  use({ "rmagatti/auto-session" })
   use({ "jose-elias-alvarez/null-ls.nvim" })
   use({ "kylechui/nvim-surround" })
   use({ "epwalsh/obsidian.nvim" })
