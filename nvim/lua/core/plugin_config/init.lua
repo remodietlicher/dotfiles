@@ -18,3 +18,5 @@ require("core.plugin_config.null-ls")
 require("core.plugin_config.surround")
 require("core.plugin_config.obsidian")
 require("core.plugin_config.toggleterm")
+require("core.plugin_config.autopairs")
+
