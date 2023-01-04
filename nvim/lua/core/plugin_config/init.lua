@@ -19,4 +19,5 @@ require("core.plugin_config.surround")
 require("core.plugin_config.obsidian")
 require("core.plugin_config.toggleterm")
 require("core.plugin_config.autopairs")
+require("core.plugin_config.fugitive")
 
