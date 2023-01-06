@@ -1,6 +1,6 @@
 require("mason").setup()
 require("mason-lspconfig").setup({
-  ensure_installed = { "sumneko_lua", "tsserver", "pyright", "clangd", "cmake" },
+  ensure_installed = { "sumneko_lua", "tsserver", "pyright", "clangd", "cmake", "texlab" },
 })
 
 local on_attach = function(_, _)
@@ -42,6 +42,11 @@ require("lspconfig").cmake.setup({
 })
 
 require("lspconfig").clangd.setup({
+  on_attach = on_attach,
+  capabilities = require("cmp_nvim_lsp").default_capabilities(),
+})
+
+require("lspconfig").texlab.setup({
   on_attach = on_attach,
   capabilities = require("cmp_nvim_lsp").default_capabilities(),
 })
