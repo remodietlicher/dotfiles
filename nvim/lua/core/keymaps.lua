@@ -9,6 +9,7 @@ vim.opt.cursorline = true
 vim.opt.autoread = true
 vim.opt.number = true
 vim.opt.relativenumber = true
+vim.opt.spelllang = 'en'
 
 -- use spaces for tabs and whatnot
 vim.opt.tabstop = 2
