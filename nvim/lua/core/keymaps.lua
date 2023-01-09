@@ -9,7 +9,8 @@ vim.opt.cursorline = true
 vim.opt.autoread = true
 vim.opt.number = true
 vim.opt.relativenumber = true
-vim.opt.spelllang = 'en'
+vim.opt.spelllang = "en"
+vim.opt.clipboard = "unnamedplus"
 
 -- use spaces for tabs and whatnot
 vim.opt.tabstop = 2
@@ -37,7 +38,8 @@ vim.keymap.set("n", "<a-right>", "<c-I>", { desc = "Go forward" })
 
 -- useful shortcuts
 vim.keymap.set("v", "<leader>p", '"_dp', { desc = "Put text from visual selection into _ registry" })
+vim.keymap.set("v", "<c-c>", '"+y', { desc = "Yank to system clipboard" })
+vim.keymap.set("n", "<c-v>", '"*p', { desc = "Paste from system clipboard in visual mode" })
 
 -- toggle normal mode in terminal mode
 vim.keymap.set("t", "<c-n>", "<c-\\><c-n>", { desc = "Enter [N]ormal mode in terminal" })
-
