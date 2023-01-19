@@ -77,7 +77,6 @@ return require("packer").startup(function(use)
   use({ "rcarriga/nvim-dap-ui" })
   use({ "jose-elias-alvarez/null-ls.nvim" })
   use({ "kylechui/nvim-surround" })
-  use({ "epwalsh/obsidian.nvim" })
   use({
     "akinsho/toggleterm.nvim",
     tag = "*",
