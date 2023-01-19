@@ -18,3 +18,4 @@ vim.keymap.set("n", "<leader>/", function()
     previewer = false,
   }))
 end, { desc = "[/] Fuzzily search in current buffer]" })
+vim.keymap.set("n", "<leader>fs", builtin.treesitter, { desc = "[F]ind [S]ymbol (from treesitter)" })
