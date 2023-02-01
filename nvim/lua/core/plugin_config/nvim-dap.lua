@@ -46,7 +46,7 @@ dap.configurations.python = {
 dap.adapters.cppdbg = {
   id = "cppdbg",
   type = "executable",
-  command = "/home/remo/.vscode/extensions/ms-vscode.cpptools-1.13.8-linux-x64/debugAdapters/bin/OpenDebugAD7",
+  command = "/home/remo/.vscode/extensions/ms-vscode.cpptools-1.13.9-linux-x64/debugAdapters/bin/OpenDebugAD7",
 }
 
 dap.configurations.cpp = {
