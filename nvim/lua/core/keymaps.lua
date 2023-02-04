@@ -39,7 +39,7 @@ vim.keymap.set("n", "<a-k>", ":bp<CR>", { desc = "Open previous buffer" })
 vim.keymap.set("n", "<a-j>", ":bn<CR>", { desc = "Open next buffer" })
 
 -- useful shortcuts
-vim.keymap.set("v", "<leader>p", '"_dp', { desc = "Put text from visual selection into _ registry" })
+vim.keymap.set("v", "<leader>p", '"_dP', { desc = "Put text from visual selection into _ registry" })
 vim.keymap.set("v", "<c-c>", '"+y', { desc = "Yank to system clipboard" })
 
 -- yanking filename (very useful for markdown links!)

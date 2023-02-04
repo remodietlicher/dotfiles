@@ -19,4 +19,7 @@ require("core.plugin_config.toggleterm")
 require("core.plugin_config.autopairs")
 require("core.plugin_config.fugitive")
 require("core.plugin_config.nvim-dap-vscode")
+require("core.plugin_config.copilot")
+require("core.plugin_config.copilot-cmp")
+require("core.plugin_config.toggle-checkbox")
 

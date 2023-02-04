@@ -42,6 +42,7 @@ cmp.setup({
     end,
   },
   sources = cmp.config.sources({
+    { name = "copilot" },
     { name = "nvim_lsp" },
     { name = "luasnip" },
     { name = "path" },
@@ -57,6 +58,7 @@ cmp.setup({
         nvim_lua = "[Lua]",
         luasnip = "[LuaSnip]",
         cmdline = "[CmdLine]",
+        copilot = "[Copilot]",
       },
     }),
   },

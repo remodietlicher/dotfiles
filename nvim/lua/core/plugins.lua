@@ -84,6 +84,20 @@ return require("packer").startup(function(use)
   use({
     "windwp/nvim-autopairs",
   })
+  use({
+    "zbirenbaum/copilot-cmp",
+    requires = {
+      { "zbirenbaum/copilot.lua" },
+    },
+  })
+  use({ 'kevinhwang91/nvim-bqf', ft = 'qf' })
+
+  -- required by nvim-bqf
+  use({ 'junegunn/fzf', run = function()
+    vim.fn['fzf#install']()
+  end
+  })
+  use({ "opdavies/toggle-checkbox.nvim" })
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
