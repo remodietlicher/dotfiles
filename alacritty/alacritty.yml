@@ -1,0 +1,8 @@
+import:
+  - /home/remo/dotfiles/alacritty/rose-pine/dist/rose-pine-moon.yml
+
+font:
+  size: 11
+
+shell:
+  program: /usr/bin/tmux

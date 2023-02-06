@@ -1,3 +1,6 @@
 [submodule "gnome-terminal"]
 	path = gnome-terminal
 	url = git@github.com:rose-pine/gnome-terminal.git
+[submodule "alacritty/rose-pine"]
+	path = alacritty/rose-pine
+	url = git@github.com:rose-pine/alacritty.git
