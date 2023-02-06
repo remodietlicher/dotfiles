@@ -6,3 +6,6 @@ font:
 
 shell:
   program: /usr/bin/tmux
+
+key_bindings:
+  - { key: F, mods: Control|Shift, action: ToggleFullscreen }
