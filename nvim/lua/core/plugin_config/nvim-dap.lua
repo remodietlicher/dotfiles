@@ -49,6 +49,12 @@ dap.adapters.cppdbg = {
   command = "/home/remo/.vscode/extensions/ms-vscode.cpptools-1.13.9-linux-x64/debugAdapters/bin/OpenDebugAD7",
 }
 
+dap.adapters.codelldb = {
+  type = 'server',
+  host = '127.0.0.1',
+  port = 13000
+}
+
 dap.configurations.cpp = {
   {
     name = "Launch file",
@@ -71,6 +77,19 @@ dap.configurations.cpp = {
     program = function()
       return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
     end,
+  },
+}
+
+dap.configurations.rust = {
+  {
+    name = "Launch file",
+    type = "codelldb",
+    request = "launch",
+    program = function()
+      return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
+    end,
+    cwd = "${workspaceFolder}",
+    stopAtEntry = true,
   },
 }
 
