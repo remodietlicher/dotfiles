@@ -1,0 +1,6 @@
+session_name: obsidian
+
+windows:
+  - window_name: obsidian
+    panes:
+      - cd /home/remo/syncthing/obsidian/ && nvim

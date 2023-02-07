@@ -1,0 +1,10 @@
+session_name: rust
+start_directory: $HOME
+
+windows:
+  - window_name: project
+    panes:
+      -
+  - window_name: codelldb
+    panes:
+      - while sleep 1; do ~/.local/share/nvim/mason/packages/codelldb/codelldb --port 13000; done
