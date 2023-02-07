@@ -1,6 +1,6 @@
 require("mason").setup()
 require("mason-lspconfig").setup({
-  ensure_installed = { "sumneko_lua", "tsserver", "pyright", "clangd", "cmake", "texlab", "rust_analyzer", "marksman" },
+    ensure_installed = { "sumneko_lua", "tsserver", "pyright", "clangd", "cmake", "texlab", "rust_analyzer", "marksman", "kotlin_language_server" },
 })
 
 local on_attach = function(_, _)
@@ -14,49 +14,54 @@ local on_attach = function(_, _)
 end
 
 require("lspconfig").sumneko_lua.setup({
-  on_attach = on_attach,
-  capabilities = require("cmp_nvim_lsp").default_capabilities(),
-  settings = {
-    Lua = {
-      diagnostics = {
-        -- Get the language server to recognize the `vim` global
-        globals = { "vim" },
-      },
+    on_attach = on_attach,
+    capabilities = require("cmp_nvim_lsp").default_capabilities(),
+    settings = {
+        Lua = {
+            diagnostics = {
+                -- Get the language server to recognize the `vim` global
+                globals = { "vim" },
+            },
+        },
     },
-  },
 })
 
 require("lspconfig").tsserver.setup({
-  on_attach = on_attach,
-  capabilities = require("cmp_nvim_lsp").default_capabilities(),
+    on_attach = on_attach,
+    capabilities = require("cmp_nvim_lsp").default_capabilities(),
 })
 
 require("lspconfig").pyright.setup({
-  on_attach = on_attach,
-  capabilities = require("cmp_nvim_lsp").default_capabilities(),
+    on_attach = on_attach,
+    capabilities = require("cmp_nvim_lsp").default_capabilities(),
 })
 
 require("lspconfig").cmake.setup({
-  on_attach = on_attach,
-  capabilities = require("cmp_nvim_lsp").default_capabilities(),
+    on_attach = on_attach,
+    capabilities = require("cmp_nvim_lsp").default_capabilities(),
 })
 
 require("lspconfig").clangd.setup({
-  on_attach = on_attach,
-  capabilities = require("cmp_nvim_lsp").default_capabilities(),
+    on_attach = on_attach,
+    capabilities = require("cmp_nvim_lsp").default_capabilities(),
 })
 
 require("lspconfig").texlab.setup({
-  on_attach = on_attach,
-  capabilities = require("cmp_nvim_lsp").default_capabilities(),
+    on_attach = on_attach,
+    capabilities = require("cmp_nvim_lsp").default_capabilities(),
 })
 
 require("lspconfig").rust_analyzer.setup({
-  on_attach = on_attach,
-  capabilities = require("cmp_nvim_lsp").default_capabilities(),
+    on_attach = on_attach,
+    capabilities = require("cmp_nvim_lsp").default_capabilities(),
 })
 
 require("lspconfig").marksman.setup({
-  on_attach = on_attach,
-  capabilities = require("cmp_nvim_lsp").default_capabilities(),
+    on_attach = on_attach,
+    capabilities = require("cmp_nvim_lsp").default_capabilities(),
+})
+
+require("lspconfig").kotlin_language_server.setup({
+    on_attach = on_attach,
+    capabilities = require("cmp_nvim_lsp").default_capabilities(),
 })
