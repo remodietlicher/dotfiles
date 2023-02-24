@@ -1,0 +1,32 @@
+""" Map leader to space ---------------------
+let mapleader=" "
+
+""" Plugins  --------------------------------
+set surround
+set commentary
+set easymotion
+
+""" Common settings -------------------------
+set showmode
+set so=5
+set incsearch
+set ignorecase
+set smartcase
+set nu
+
+""" Idea specific settings ------------------
+set ideajoin
+set ideastatusicon=gray
+set idearefactormode=keep
+
+""" Mappings --------------------------------
+map <Leader> <Plug>(easymotion-prefix)
+map <leader>hw <Plug>(easymotion-bd-w)
+map <leader>hl <Plug>(easymotion-bd-jk)
+map <leader>hc <Plug>(easymotion-bd-f2)
+map <leader>rn <Action>(RenameElement)
+map <leader>ff <Action>(GotoFile)
+map <leader>fw <Action>(FindInPath)
+map <leader>af <Action>(ReformatCode)
+map <leader>ai <Action>(OptimizeImports)
+
