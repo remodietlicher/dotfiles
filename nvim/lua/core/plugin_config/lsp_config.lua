@@ -1,6 +1,6 @@
 require("mason").setup()
 require("mason-lspconfig").setup({
-    ensure_installed = { "sumneko_lua", "tsserver", "pyright", "clangd", "cmake", "texlab", "rust_analyzer", "marksman", "kotlin_language_server" },
+    ensure_installed = { "lua_ls", "tsserver", "pyright", "clangd", "cmake", "texlab", "rust_analyzer", "marksman", "kotlin_language_server" },
 })
 
 local on_attach = function(_, _)
@@ -13,7 +13,7 @@ local on_attach = function(_, _)
   vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
 end
 
-require("lspconfig").sumneko_lua.setup({
+require("lspconfig").lua_ls.setup({
     on_attach = on_attach,
     capabilities = require("cmp_nvim_lsp").default_capabilities(),
     settings = {
