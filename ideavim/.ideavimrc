@@ -32,4 +32,5 @@ map <leader>oi <Action>(OptimizeImports)
 map <leader>ca <Action>(ShowIntentionActions)
 map <leader>b <Action>(ToggleLineBreakpoint)
 map <leader>gt <Action>(GotoTest)
+map gi <Action>(GotoImplementation)
 
