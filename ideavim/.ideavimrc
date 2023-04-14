@@ -5,6 +5,8 @@ let mapleader=" "
 set surround
 set commentary
 set easymotion
+set quickscope
+set NERDTree
 
 """ Common settings -------------------------
 set showmode
@@ -13,6 +15,7 @@ set incsearch
 set ignorecase
 set smartcase
 set nu
+set relativenumber
 
 """ Idea specific settings ------------------
 set ideajoin
@@ -20,6 +23,7 @@ set ideastatusicon=gray
 set idearefactormode=keep
 
 """ Mappings --------------------------------
+imap jj <Esc>
 map <Leader> <Plug>(easymotion-prefix)
 map <leader>hw <Plug>(easymotion-bd-w)
 map <leader>hl <Plug>(easymotion-bd-jk)
@@ -33,4 +37,7 @@ map <leader>ca <Action>(ShowIntentionActions)
 map <leader>b <Action>(ToggleLineBreakpoint)
 map <leader>gt <Action>(GotoTest)
 map gi <Action>(GotoImplementation)
-
+map <leader>fb <Action>(Switcher)
+map <leader>fc <Action>(RecentChangedFiles)
+map <leader>fl <Action>(RecentLocations)
+map <leader>cs <Action>(ChangeSignature)
