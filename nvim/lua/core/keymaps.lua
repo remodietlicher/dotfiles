@@ -24,6 +24,9 @@ vim.o.ignorecase = true
 vim.o.smartcase = true
 vim.keymap.set("n", "<leader>h", ":nohlsearch<CR>", { desc = "No search highlight" })
 
+-- custom esc
+vim.keymap.set("i", "jj", "<esc>", {desc = "Remap ESC key"})
+
 -- pane management
 vim.keymap.set("n", "<leader>sl", ":vsplit<CR>", { desc = "Split pane vertically" })
 vim.keymap.set("n", "<leader>sk", ":split<CR>", { desc = "Split pane horizontally" })
