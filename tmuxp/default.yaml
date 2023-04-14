@@ -1,0 +1,9 @@
+session_name: default
+
+windows:
+  - window_name: dotfiles
+    panes:
+      - cd /home/remo/dotfiles/ && nvim
+  - window_name: obsidian
+    panes:
+      - cd /home/remo/syncthing/obsidian/ && nvim
