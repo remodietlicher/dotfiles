@@ -25,7 +25,7 @@ vim.o.smartcase = true
 vim.keymap.set("n", "<leader>h", ":nohlsearch<CR>", { desc = "No search highlight" })
 
 -- custom esc
-vim.keymap.set("i", "jj", "<esc>", {desc = "Remap ESC key"})
+vim.keymap.set("i", "jj", "<esc>", { desc = "Remap ESC key" })
 
 -- pane management
 vim.keymap.set("n", "<leader>sl", ":vsplit<CR>", { desc = "Split pane vertically" })
@@ -44,25 +44,26 @@ vim.keymap.set("n", "<a-j>", ":bn<CR>", { desc = "Open next buffer" })
 -- useful shortcuts
 vim.keymap.set("v", "<leader>p", '"_dP', { desc = "Put text from visual selection into _ registry" })
 vim.keymap.set("v", "<c-c>", '"+y', { desc = "Yank to system clipboard" })
+vim.keymap.set("n", "sf", ":w<CR>", { desc = "Save file" })
 
 -- yanking filename (very useful for markdown links!)
 vim.keymap.set(
-  "n",
-  "<leader>yr",
-  ":let @+ = expand('%')<CR>",
-  { desc = "[Y]ank [R]elative file name to unnamed register" }
+    "n",
+    "<leader>yr",
+    ":let @+ = expand('%')<CR>",
+    { desc = "[Y]ank [R]elative file name to unnamed register" }
 )
 vim.keymap.set(
-  "n",
-  "<leader>ya",
-  ":let @+ = expand('%:p')<CR>",
-  { desc = "[Y]ank [A]bsolute file name to unnamed register" }
+    "n",
+    "<leader>ya",
+    ":let @+ = expand('%:p')<CR>",
+    { desc = "[Y]ank [A]bsolute file name to unnamed register" }
 )
 vim.keymap.set(
-  "n",
-  "<leader>yf",
-  ":let @+ = expand('%:t')<CR>",
-  { desc = "[Y]ank [F]ile name to unnamed register" }
+    "n",
+    "<leader>yf",
+    ":let @+ = expand('%:t')<CR>",
+    { desc = "[Y]ank [F]ile name to unnamed register" }
 )
 
 -- toggle normal mode in terminal mode
