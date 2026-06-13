@@ -10,11 +10,13 @@ end, { desc = "Apply format (document)" })
 -- Find word in files (live grep). Find files (<leader>ff) and buffers (<leader>fb) are LazyVim defaults.
 vim.keymap.set("n", "<leader>fw", "<cmd>FzfLua live_grep<cr>", { desc = "Find word in files" })
 
--- Scroll the viewport 5 lines up/down. Note: <C-i> is the same keycode as <Tab> in a
--- terminal, so this also rebinds Tab in normal mode and shadows the jumplist-forward jump.
--- Mirror j/k: <C-u> (above j) scrolls down like j, <C-i> (above k) scrolls up like k.
-vim.keymap.set({ "n", "v" }, "<C-u>", "5<C-e>", { desc = "Scroll down 5 lines" })
-vim.keymap.set({ "n", "v" }, "<C-i>", "5<C-y>", { desc = "Scroll up 5 lines" })
+-- Scroll the viewport 5 lines with Option/Alt + j/k (aligned with motion: j = down, k = up).
+-- This intentionally overrides LazyVim's default <A-j>/<A-k> move-lines binding (dropped).
+vim.keymap.set({ "n", "v" }, "<A-j>", "5<C-e>", { desc = "Scroll down 5 lines" })
+vim.keymap.set({ "n", "v" }, "<A-k>", "5<C-y>", { desc = "Scroll up 5 lines" })
+-- Also clear the insert-mode move-lines default so Option+j/k is purely scroll everywhere.
+vim.keymap.set("i", "<A-j>", "<Nop>")
+vim.keymap.set("i", "<A-k>", "<Nop>")
 
 -- Disable the default single-line scroll keys (unwanted).
 vim.keymap.set({ "n", "v" }, "<C-e>", "<Nop>")

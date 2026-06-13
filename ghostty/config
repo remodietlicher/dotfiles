@@ -61,3 +61,7 @@ keybind = cmd+shift+right_bracket=unbind
 #   cmd+n  new window      cmd+q  quit
 #   cmd+c / cmd+v  copy/paste   cmd+plus / cmd+minus / cmd+0  font size
 #   cmd+k  clear scrollback (also handy)
+
+# cmd+j toggles tmux pane zoom (expand/minimize the active pane). tmux can't see
+# Cmd, so translate it into the tmux sequence: prefix (Ctrl-Space = \x00) then z.
+keybind = cmd+j=text:\x00z
