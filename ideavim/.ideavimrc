@@ -1,0 +1,53 @@
+""" Map leader to space ---------------------
+let mapleader=" "
+
+""" Plugins  --------------------------------
+set surround
+set commentary
+set easymotion
+set quickscope
+set NERDTree
+
+""" Common settings -------------------------
+set showmode
+set so=5
+set incsearch
+set ignorecase
+set smartcase
+set nu
+set relativenumber
+
+""" Idea specific settings ------------------
+set ideajoin
+set ideastatusicon=gray
+set idearefactormode=keep
+
+""" Mappings --------------------------------
+imap jj <Esc>
+map <leader>l <Plug>(easymotion-bd-f2)
+map <leader>rn <Action>(RenameElement)
+map <leader>af <Action>(ReformatCode)
+map <leader>as <Action>(Tool_External Tools_sqlfmt)
+map <leader>oi <Action>(OptimizeImports)
+map <leader>ca <Action>(ShowIntentionActions)
+map <leader>b <Action>(ToggleLineBreakpoint)
+map <leader>gt <Action>(GotoTest)
+map gi <Action>(GotoImplementation)
+map <leader>cs <Action>(ChangeSignature)
+map <leader>im <Action>(ImplementMethods)
+map <leader>k <Action>(easymotion-wl)
+map sf <Action>(SaveDocument)
+map <leader>ra (AttachToProcess)
+
+""" Mappings --------------------------------
+map ga 'A
+map gs 'S
+map gq 'Q
+map gw 'W
+map ma mA
+map ms mS
+map mq mQ
+map mw mW
+map <leader>p "_dP
+nnoremap <C-j> 10<C-e>
+nnoremap <C-k> 10<C-y>
