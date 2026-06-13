@@ -1,0 +1,61 @@
+# ~/.config/ghostty/config
+# Ghostty as a single, dumb terminal — tmux handles all multiplexing.
+# Reference: `ghostty +show-config --default --docs` lists every option.
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Font
+# ─────────────────────────────────────────────────────────────────────────────
+font-family = "FiraCode Nerd Font"
+font-size = 14
+font-thicken = true
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Theme / appearance
+# ─────────────────────────────────────────────────────────────────────────────
+theme = "Catppuccin Mocha"
+background-opacity = 1.0
+cursor-style = block
+cursor-style-blink = false
+window-padding-x = 8
+window-padding-y = 8
+
+# Don't show the macOS titlebar tabs / keep it clean
+macos-titlebar-style = tabs
+window-theme = auto
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Behavior
+# ─────────────────────────────────────────────────────────────────────────────
+# Open new windows/tabs in the working directory (matters only if you use them)
+window-inherit-working-directory = true
+# Confirm before closing a surface that has a running process
+confirm-close-surface = true
+# Scrollback handled mostly by tmux, but keep a healthy local buffer too
+scrollback-limit = 10000
+# Make Option behave as Alt/Meta (useful in the shell & nvim)
+macos-option-as-alt = true
+# Don't let the shell integration auto-inject features that fight tmux
+shell-integration = detect
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Hand multiplexing entirely to tmux — unbind Ghostty's own splits/tabs/nav
+# so they never shadow tmux or get fat-fingered.
+# ─────────────────────────────────────────────────────────────────────────────
+keybind = cmd+d=unbind
+keybind = cmd+shift+d=unbind
+keybind = cmd+t=unbind
+keybind = cmd+w=unbind
+keybind = cmd+shift+enter=unbind
+keybind = cmd+left_bracket=unbind
+keybind = cmd+right_bracket=unbind
+keybind = cmd+alt+left=unbind
+keybind = cmd+alt+right=unbind
+keybind = cmd+alt+up=unbind
+keybind = cmd+alt+down=unbind
+keybind = cmd+shift+left_bracket=unbind
+keybind = cmd+shift+right_bracket=unbind
+
+# Keep the genuinely useful, non-conflicting ones:
+#   cmd+n  new window      cmd+q  quit
+#   cmd+c / cmd+v  copy/paste   cmd+plus / cmd+minus / cmd+0  font size
+#   cmd+k  clear scrollback (also handy)
