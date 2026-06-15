@@ -18,13 +18,18 @@ return {
         fields = { "hash", "timestamp", "author", "branch_name", "tag" },
       },
       hooks = {
-        -- <enter> on a commit -> open that commit's diff in diffview
+        -- <CR> on a commit: compare it to the checked-out HEAD via the merge-base
+        -- (the `...` GitHub-style PR diff). Flow: check out the PR branch, find
+        -- the target branch's commit in the graph, <CR> -> see exactly what the
+        -- PR changes relative to that target. (Swap "..." for ".." if you ever
+        -- want a literal two-tree diff instead of the merge-base one.)
         on_select_commit = function(commit)
-          vim.cmd(":DiffviewOpen " .. commit.hash .. "^!")
+          vim.cmd("DiffviewOpen " .. commit.hash .. "...HEAD")
         end,
-        -- visual-select a range of commits -> diff the whole range
+        -- Visual-select commits then <CR>: diff across the selection. Select a
+        -- single commit this way to inspect just that commit's own changes.
         on_select_range_commit = function(from, to)
-          vim.cmd(":DiffviewOpen " .. from.hash .. "~1.." .. to.hash)
+          vim.cmd("DiffviewOpen " .. from.hash .. "~1.." .. to.hash)
         end,
       },
     },
