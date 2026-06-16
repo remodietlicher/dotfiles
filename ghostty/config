@@ -65,3 +65,10 @@ keybind = cmd+shift+right_bracket=unbind
 # cmd+j toggles tmux pane zoom (expand/minimize the active pane). tmux can't see
 # Cmd, so translate it into the tmux sequence: prefix (Ctrl-Space = \x00) then z.
 keybind = cmd+j=text:\x00z
+
+# cmd+left / cmd+right -> nvim jumplist "go back" / "go forward".
+# Ghostty can't tell it's nvim, so it just forwards the raw control bytes that
+# nvim reads as <C-o> / <C-i>:  Ctrl-O = \x0f (back),  Ctrl-I = \x09 (forward,
+# same byte as Tab). They travel through tmux untouched (prefix is Ctrl-Space).
+keybind = cmd+left=text:\x0f
+keybind = cmd+right=text:\x09
