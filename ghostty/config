@@ -32,10 +32,10 @@ window-inherit-working-directory = true
 confirm-close-surface = true
 # Scrollback handled mostly by tmux, but keep a healthy local buffer too
 scrollback-limit = 10000
-# Only the LEFT Option key acts as Alt/Meta (for Alt-based shortcuts like fzf's
-# Alt-C). The RIGHT Option key stays normal so the Swiss/German layout can still
-# type ~ @ [ ] { } | \ etc. (all of which are Option+key combos).
-macos-option-as-alt = left
+# Only the RIGHT Option key acts as Alt/Meta (for Alt-based shortcuts like fzf's
+# Alt-C and Option+Delete in nvim). The LEFT Option key stays normal so the
+# Swiss/German layout can still type ~ @ [ ] { } | \ etc. (all Option+key combos).
+macos-option-as-alt = right
 # Don't let the shell integration auto-inject features that fight tmux
 shell-integration = detect
 
@@ -46,7 +46,6 @@ shell-integration = detect
 keybind = cmd+d=unbind
 keybind = cmd+shift+d=unbind
 keybind = cmd+t=unbind
-keybind = cmd+w=unbind
 keybind = cmd+shift+enter=unbind
 keybind = cmd+left_bracket=unbind
 keybind = cmd+right_bracket=unbind
@@ -72,3 +71,10 @@ keybind = cmd+j=text:\x00z
 # same byte as Tab). They travel through tmux untouched (prefix is Ctrl-Space).
 keybind = cmd+left=text:\x0f
 keybind = cmd+right=text:\x09
+
+# cmd+w -> close the current nvim buffer (the macOS "close tab" muscle memory).
+# Ghostty can't see Cmd, so translate it into the kitty-protocol encoding for
+# Super+w:  ESC [ 119 ; 9 u  (119 = 'w', modifier 9 = super). nvim decodes this
+# as <D-w> and maps it to Snacks.bufdelete (see nvim/lua/config/keymaps.lua).
+# The bytes pass through tmux untouched (no Ctrl-Space prefix involved).
+keybind = cmd+w=text:\x1b[119;9u
