@@ -33,9 +33,9 @@ confirm-close-surface = true
 # Scrollback handled mostly by tmux, but keep a healthy local buffer too
 scrollback-limit = 10000
 # Only the RIGHT Option key acts as Alt/Meta (for Alt-based shortcuts like fzf's
-# Alt-C and Option+Delete in nvim). The LEFT Option key stays normal so the
+# Alt-C and Option+Delete in nvim). The RIGHT Option key stays normal so the
 # Swiss/German layout can still type ~ @ [ ] { } | \ etc. (all Option+key combos).
-macos-option-as-alt = right
+macos-option-as-alt = left
 # Don't let the shell integration auto-inject features that fight tmux
 shell-integration = detect
 
