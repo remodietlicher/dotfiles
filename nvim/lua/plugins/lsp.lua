@@ -48,6 +48,7 @@ return {
   "neovim/nvim-lspconfig",
   opts = {
     servers = {
+      ty = {},
       -- `["*"]` applies to every server. Re-defining "gd" overrides LazyVim's
       -- default because the keymap resolver lets the last entry for an lhs win.
       ["*"] = {
