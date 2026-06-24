@@ -4,6 +4,9 @@ return {
     picker = {
       sources = {
         explorer = {
+          -- Always show dotfiles and gitignored files in the tree.
+          hidden = true,
+          ignored = true,
           layout = {
             -- The explorer uses the "sidebar" preset; override only the
             -- position so the tree opens on the right instead of the left.
