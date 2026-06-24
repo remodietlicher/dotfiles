@@ -8,12 +8,28 @@
 -- Setting the lsp to a non-existent server prevents it from being Mason-installed.
 vim.g.lazyvim_python_lsp = "ty"
 
+-- uv workspace root fix: both ty and ruff default to stopping at the nearest
+-- pyproject.toml (the workspace member). Putting uv.lock first makes them climb
+-- to the actual workspace root, which also fixes <leader>ff via LazyVim.root().
+local python_root_markers = { "uv.lock", ".git", "pyproject.toml", "setup.py", "setup.cfg", "requirements.txt" }
+
 return {
-  "stevearc/conform.nvim",
-  optional = true,
-  opts = {
-    formatters_by_ft = {
-      python = { "ruff_organize_imports", "ruff_format" },
+  {
+    "neovim/nvim-lspconfig",
+    opts = {
+      servers = {
+        ty = { root_markers = python_root_markers },
+        ruff = { root_markers = python_root_markers },
+      },
+    },
+  },
+  {
+    "stevearc/conform.nvim",
+    optional = true,
+    opts = {
+      formatters_by_ft = {
+        python = { "ruff_organize_imports", "ruff_format" },
+      },
     },
   },
 }
