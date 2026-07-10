@@ -8,6 +8,10 @@ return {
       {
         "<leader>gG",
         function()
+          -- Open the graph in its own tab so it doesn't clobber the working
+          -- buffer (gitgraph draws with nvim_win_set_buf on the current window).
+          -- The <CR> diff hooks then open a further tab; :tabclose peels back out.
+          vim.cmd("tabnew")
           require("gitgraph").draw({}, { all = true, max_count = 5000 })
         end,
         desc = "Git graph",
