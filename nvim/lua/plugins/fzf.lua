@@ -16,6 +16,7 @@ return {
     local ignore = {
       ".git",
       ".jj",
+      ".env",
       "node_modules",
       ".venv",
       "venv",
@@ -38,6 +39,15 @@ return {
     opts.files = vim.tbl_extend("force", opts.files or {}, {
       fd_opts = "--color=never --type f --type l --hidden --no-ignore " .. table.concat(fd_excludes, " "),
       rg_opts = "--color=never --files --hidden --no-ignore " .. table.concat(rg_globs, " "),
+    })
+
+    -- Same treatment for live_grep (<leader>fw): --hidden pulls in .github/ etc.,
+    -- --no-ignore searches gitignored files, and the globs keep noise dirs out.
+    -- `-e` must stay last: fzf-lua appends the search pattern after rg_opts.
+    opts.grep = vim.tbl_extend("force", opts.grep or {}, {
+      rg_opts = "--column --line-number --no-heading --color=always --smart-case --max-columns=4096 --hidden --no-ignore "
+        .. table.concat(rg_globs, " ")
+        .. " -e",
     })
     return opts
   end,
