@@ -45,3 +45,10 @@ vim.keymap.set({ "i", "c" }, "<M-BS>", "<C-w>", { desc = "Delete word before cur
 vim.keymap.set({ "n", "i", "v" }, "<D-w>", function()
   Snacks.bufdelete()
 end, { desc = "Close buffer" })
+
+-- Move tab switching from LazyVim's default <leader><tab>[ / <leader><tab>]
+-- to <leader><tab>p / <leader><tab>n (previous/next, mnemonic over bracket).
+vim.keymap.del("n", "<leader><tab>[")
+vim.keymap.del("n", "<leader><tab>]")
+vim.keymap.set("n", "<leader><tab>p", "<cmd>tabprevious<cr>", { desc = "Previous Tab" })
+vim.keymap.set("n", "<leader><tab>n", "<cmd>tabnext<cr>", { desc = "Next Tab" })
