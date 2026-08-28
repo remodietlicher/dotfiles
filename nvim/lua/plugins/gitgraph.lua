@@ -28,8 +28,12 @@ return {
         -- the target branch's commit in the graph, <CR> -> see exactly what the
         -- PR changes relative to that target. (Swap "..." for ".." if you ever
         -- want a literal two-tree diff instead of the merge-base one.)
+        --
+        -- `~1` makes the range *inclusive* of the selected commit: plain
+        -- `<hash>...HEAD` starts at the merge-base, which for an ancestor of
+        -- HEAD is the commit itself, so its own changes would be left out.
         on_select_commit = function(commit)
-          vim.cmd("DiffviewOpen " .. commit.hash .. "...HEAD")
+          vim.cmd("DiffviewOpen " .. commit.hash .. "~1...HEAD")
         end,
         -- Visual-select commits then <CR>: diff across the selection. Select a
         -- single commit this way to inspect just that commit's own changes.
