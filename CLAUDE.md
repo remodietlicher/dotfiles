@@ -10,6 +10,7 @@ this repo are live (after reloading the relevant app):
 | `nvim/`          | `~/.config/nvim`              | Neovim (LazyVim) |
 | `tmux/tmux.conf` | `~/.config/tmux/tmux.conf`    | tmux    |
 | `ideavim/.ideavimrc` | `~/.ideavimrc`            | IdeaVim |
+| `opencode/opencode.json` | `~/.config/opencode/opencode.json` | opencode |
 
 ## The stack
 
@@ -32,6 +33,32 @@ Those bytes pass through tmux untouched (as long as they don't collide with the
 When adding such a binding, wire all three layers: the `text:` mapping in
 `ghostty/config`, pass-through awareness in `tmux/tmux.conf` if relevant, and the
 `<D-…>`/control-key mapping in `nvim/lua/config/keymaps.lua`.
+
+## opencode + the LiteLLM gateway
+
+`opencode/opencode.json` is symlinked as a **single file**, not as a directory
+like `ghostty/` and `nvim/` — opencode owns the rest of `~/.config/opencode`
+(it writes `node_modules/`, `package.json`, and auth state there), so only the
+config file belongs in git.
+
+The `litellm` provider points at a remote LiteLLM gateway. **This repo is public**,
+so neither the token nor the hostname is committed — both are read from the
+environment via opencode's `{env:VAR}` substitution, and unset vars silently
+become an empty string. Export them from a private, un-committed file:
+
+    export LITELLM_BASE_URL="https://<gateway-host>/v1"   # note the /v1 suffix
+    export LITELLM_API_KEY="sk-..."
+
+LiteLLM only serves the model names its own `model_list` defines, and opencode
+needs each one declared explicitly under `provider.litellm.models`. List what the
+gateway offers with:
+
+    curl -s "$LITELLM_BASE_URL/models" \
+      -H "Authorization: Bearer $LITELLM_API_KEY" | jq -r '.data[].id'
+
+then add them under `provider.litellm.models`. The top-level `"model"` key sets
+the default (currently `litellm/qwen3.8-27b`); override per run with
+`opencode --model <provider>/<id>`, or per session with `/models` in the TUI.
 
 ## Reloading after edits
 
