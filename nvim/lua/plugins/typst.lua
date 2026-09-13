@@ -21,6 +21,10 @@
 -- main.typ, so diagnostics resolve against the whole document.
 return {
   {
+    "neovim/nvim-lspconfig",
+    opts = { servers = { tinymist = { settings = { formatterProseWrap = true } } } },
+  },
+  {
     "mason-org/mason.nvim",
     opts = { ensure_installed = { "tinymist", "typstyle" } },
   },
