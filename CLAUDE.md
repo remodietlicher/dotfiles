@@ -11,6 +11,30 @@ this repo are live (after reloading the relevant app):
 | `tmux/tmux.conf` | `~/.config/tmux/tmux.conf`    | tmux    |
 | `ideavim/.ideavimrc` | `~/.ideavimrc`            | IdeaVim |
 | `opencode/opencode.json` | `~/.config/opencode/opencode.json` | opencode |
+| `zsh/zshrc`      | *sourced* from `~/.zshrc` (see below) | zsh |
+
+## zsh — sourced, not symlinked
+
+`zsh/zshrc` is the one config here that is **not** symlinked into place. `~/.zshrc`
+stays the machine's own file and pulls this one in with a single line at the end:
+
+    [[ -f ~/code/dotfiles/zsh/zshrc ]] && source ~/code/dotfiles/zsh/zshrc
+
+Two reasons not to symlink it. Installers (brew, rustup, uv, conda) append their
+init lines to `~/.zshrc` — through a symlink those writes land in this repo, and
+**this repo is public**, which is how a token eventually gets committed. And
+`~/.zshrc` staying machine-owned means a second machine can differ without a
+branch.
+
+The split that follows from that:
+
+- **`zsh/zshrc`** (here, committed) — portable settings: exports, aliases,
+  widget config.
+- **`~/.zshrc`** (machine, un-tracked) — whatever installers wrote, plus the one
+  source line.
+- **`~/.zshrc.local`** (machine, un-tracked) — secrets and per-host paths. It is
+  sourced last, so it can override anything above; this is the private file the
+  LiteLLM section below refers to for `LITELLM_BASE_URL` / `LITELLM_API_KEY`.
 
 ## The stack
 
@@ -65,3 +89,5 @@ the default (currently `litellm/qwen3.8-27b`); override per run with
 - Ghostty: `Cmd+Shift+,` (reload config) or restart the app.
 - tmux: `prefix + r` (sources `~/.config/tmux/tmux.conf`).
 - Neovim: restart, or `:source` the changed file.
+- zsh: `exec zsh` (re-runs `~/.zshrc`, which re-sources `zsh/zshrc`). Existing
+  shells keep the old values until then.

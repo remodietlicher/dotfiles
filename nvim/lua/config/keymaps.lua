@@ -10,12 +10,24 @@ end, { desc = "Apply format (document)" })
 -- Find word in files (live grep). Find files (<leader>ff) and buffers (<leader>fb) are LazyVim defaults.
 vim.keymap.set("n", "<leader>fw", "<cmd>FzfLua live_grep<cr>", { desc = "Find word in files" })
 
--- Yank the absolute path of the current file to the system clipboard.
-vim.keymap.set("n", "<leader>yp", function()
-  local path = vim.fn.expand("%:p")
-  vim.fn.setreg("+", path)
-  vim.notify("Copied: " .. path)
-end, { desc = "Yank absolute file path" })
+-- Yank the current buffer's name to the system clipboard. The filename-modifier
+-- picks what you get: `%:p` the absolute path, `%:t` the tail (name + extension).
+-- Append `:r` to either to drop the extension, e.g. `%:t:r`. Unnamed buffers
+-- (scratch, pickers) expand to "", so warn instead of clobbering the clipboard.
+local function yank_filename(modifier)
+  return function()
+    local name = vim.fn.expand("%" .. modifier)
+    if name == "" then
+      vim.notify("Buffer has no file name", vim.log.levels.WARN)
+      return
+    end
+    vim.fn.setreg("+", name)
+    vim.notify("Copied: " .. name)
+  end
+end
+
+vim.keymap.set("n", "<leader>yp", yank_filename(":p"), { desc = "Yank absolute file path" })
+vim.keymap.set("n", "<leader>yn", yank_filename(":t"), { desc = "Yank file name" })
 
 -- Scroll the viewport 5 lines with Option/Alt + j/k (aligned with motion: j = down, k = up).
 -- This intentionally overrides LazyVim's default <A-j>/<A-k> move-lines binding (dropped).

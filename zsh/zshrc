@@ -1,0 +1,33 @@
+# Shared zsh config, tracked in this repo.
+#
+# Unlike ghostty/ and nvim/, this is NOT symlinked over ~/.zshrc — it is SOURCED
+# from it by a single line near the bottom of ~/.zshrc:
+#
+#   [[ -f ~/code/dotfiles/zsh/zshrc ]] && source ~/code/dotfiles/zsh/zshrc
+#
+# Sourcing rather than symlinking, for two reasons. Installers (brew, rustup,
+# uv, conda, …) append their init lines to ~/.zshrc; if that path were a symlink
+# into here, those writes would land in this repo — which is public, and that is
+# how a token eventually gets committed. And ~/.zshrc stays the machine's own
+# file, so a second machine can differ without needing a branch.
+#
+# So: everything portable goes here; everything machine-specific or secret goes
+# in ~/.zshrc.local, sourced at the bottom and never committed.
+
+# ---------------------------------------------------------------------------
+# fzf
+# ---------------------------------------------------------------------------
+# ALT-C (left-Option+C — ghostty sets `macos-option-as-alt = left`) cds into a
+# subdirectory; CTRL-T pastes a path. Left alone, fzf's built-in walker runs
+# with `hidden`, so in ~ the list is mostly dotdirs and Library. Pointing the
+# widgets at fd fixes that: fd skips hidden entries by default and honors
+# .gitignore. Both need fd on PATH (`brew install fd`).
+export FZF_ALT_C_COMMAND='fd --type d --exclude Library --exclude node_modules'
+export FZF_CTRL_T_COMMAND='fd --hidden=false --exclude Library'
+
+# ---------------------------------------------------------------------------
+# Machine-local overrides — deliberately last, so it can override anything
+# above. This is the un-committed file the LiteLLM section of CLAUDE.md refers
+# to: LITELLM_BASE_URL / LITELLM_API_KEY belong there, not here.
+# ---------------------------------------------------------------------------
+[[ -f ~/.zshrc.local ]] && source ~/.zshrc.local
