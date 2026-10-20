@@ -26,6 +26,20 @@ export FZF_ALT_C_COMMAND='fd --type d --exclude Library --exclude node_modules'
 export FZF_CTRL_T_COMMAND='fd --hidden=false --exclude Library'
 
 # ---------------------------------------------------------------------------
+# kubectl
+# ---------------------------------------------------------------------------
+# One kubeconfig per cluster in ~/.kube/configs/, joined into KUBECONFIG so
+# kubectl, kubectx and kubens see all contexts. ~/.kube/config goes first: it
+# holds current-context, and `kubectl config use-context` writes to the first
+# file. Left alone if KUBECONFIG is already set, so a shell started with a
+# restricted config (e.g. Claude Code's) keeps it.
+() {
+  [[ -n $KUBECONFIG ]] && return
+  local files=($HOME/.kube/config(N.) $HOME/.kube/configs/*(N.))
+  (( $#files )) && export KUBECONFIG=${(j.:.)files}
+}
+
+# ---------------------------------------------------------------------------
 # Machine-local overrides — deliberately last, so it can override anything
 # above. This is the un-committed file the LiteLLM section of CLAUDE.md refers
 # to: LITELLM_BASE_URL / LITELLM_API_KEY belong there, not here.
