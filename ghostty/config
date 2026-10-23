@@ -59,11 +59,13 @@ keybind = cmd+shift+right_bracket=unbind
 # Keep the genuinely useful, non-conflicting ones:
 #   cmd+n  new window      cmd+q  quit
 #   cmd+c / cmd+v  copy/paste   cmd+plus / cmd+minus / cmd+0  font size
-#   cmd+k  clear scrollback (also handy)
 
-# cmd+j toggles tmux pane zoom (expand/minimize the active pane). tmux can't see
-# Cmd, so translate it into the tmux sequence: prefix (Ctrl-Space = \x00) then z.
-keybind = cmd+j=text:\x00z
+# cmd+j / cmd+k -> next / previous herdr space (j = down the sidebar). Sent as
+# kitty-protocol Super+j/k (ESC [ 106|107 ; 9 u) like cmd+h/l below, and bound
+# as cmd+j/k in herdr/config.toml. Replaces Ghostty's cmd+k (clear scrollback);
+# pane zoom stays on prefix + z.
+keybind = cmd+j=text:\x1b[106;9u
+keybind = cmd+k=text:\x1b[107;9u
 
 # cmd+left / cmd+right -> nvim jumplist "go back" / "go forward".
 # Ghostty can't tell it's nvim, so it just forwards the raw control bytes that
@@ -78,3 +80,15 @@ keybind = cmd+right=text:\x09
 # as <D-w> and maps it to Snacks.bufdelete (see nvim/lua/config/keymaps.lua).
 # The bytes pass through tmux untouched (no Ctrl-Space prefix involved).
 keybind = cmd+w=text:\x1b[119;9u
+
+# cmd+h / cmd+l -> previous / next herdr tab in one stroke. Sent as kitty-protocol
+# Super+h/l (ESC [ 104|108 ; 9 u) like cmd+w, and bound as cmd+h/l in
+# herdr/config.toml. A raw \x00 prefix sequence (the cmd+j trick) doesn't
+# register in herdr. Takes over macOS's cmd+h (Hide Ghostty).
+keybind = cmd+h=text:\x1b[104;9u
+keybind = cmd+l=text:\x1b[108;9u
+
+# option+backspace -> delete the word before the cursor. Sends Ctrl-W (\x17),
+# which zsh, nvim insert mode and most TUIs treat as backward-kill-word, rather
+# than the ESC+DEL that Alt+Backspace produces and not every app decodes.
+keybind = alt+backspace=text:\x17

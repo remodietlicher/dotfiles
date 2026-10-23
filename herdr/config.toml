@@ -1,0 +1,108 @@
+# ~/.config/herdr/config.toml
+# Tuned to feel like ../tmux/tmux.conf. `herdr --default-config` lists every
+# option; apply edits with `prefix + r` or `herdr server reload-config`.
+
+onboarding = false
+
+[theme]
+name = "catppuccin"
+
+[theme.custom]
+# Same peach accent as tmux's active pane border.
+accent = "#fab387"
+
+[terminal]
+# New panes/tabs open in the source pane's cwd, like tmux's `-c "#{pane_current_path}"`.
+new_cwd = "follow"
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Keys
+# ─────────────────────────────────────────────────────────────────────────────
+[keys]
+# Prefix: Ctrl-Space, as in tmux.
+prefix = "ctrl+space"
+
+reload_config = "prefix+r"
+
+# Splits: | side by side, - stacked.
+split_vertical = ["prefix+|", "prefix+v"]
+split_horizontal = "prefix+minus"
+
+# Pane focus: Ctrl-Arrow directly (no prefix), plus prefix + h/j/k/l.
+focus_pane_left = ["prefix+h", "ctrl+left"]
+focus_pane_down = ["prefix+j", "ctrl+down"]
+focus_pane_up = ["prefix+k", "ctrl+up"]
+focus_pane_right = ["prefix+l", "ctrl+right"]
+
+# Resize: prefix + H/J/K/L takes one step. tmux let you keep tapping after one
+# prefix; herdr's equivalent is resize mode (prefix + R, then h/j/k/l, Esc to leave).
+resize_pane_left = "prefix+shift+h"
+resize_pane_down = "prefix+shift+j"
+resize_pane_up = "prefix+shift+k"
+resize_pane_right = "prefix+shift+l"
+resize_mode = "prefix+shift+r"
+
+# prefix + g was the tmux scratch popup (see [[keys.command]] below), so herdr's
+# own goto moves to prefix + f.
+goto = "prefix+f"
+
+# Previous / next tab in one stroke: Ghostty sends cmd+h/l as CSI-u.
+previous_tab = ["prefix+p", "cmd+h"]
+next_tab = ["prefix+n", "cmd+l"]
+
+# Previous / next space in one stroke: Ghostty sends cmd+k/j as CSI-u.
+previous_workspace = "cmd+k"
+next_workspace = "cmd+j"
+
+# Jump to space N (unbound by default). Not shift+1..9: on the Swiss layout
+# Shift+digit types + " * ç …, so the chord never arrives as shift+1. Alt is the
+# left Option key (ghostty `macos-option-as-alt = left`).
+switch_workspace = "prefix+alt+1..9"
+
+# Cycle through agents (unbound by default).
+next_agent = "prefix+a"
+previous_agent = "prefix+shift+a"
+
+# Navigate mode (prefix + w): j/k walk the spaces list instead of focusing panes,
+# so up/down pane focus moves to J/K. h/l still focus panes left/right.
+navigate_workspace_up = ["k", "up"]
+navigate_workspace_down = ["j", "down"]
+navigate_pane_up = "shift+k"
+navigate_pane_down = "shift+j"
+
+# Floating terminal on prefix + g. Unlike tmux's persistent "scratch" session,
+# the popup's shell exits when it closes.
+[[keys.command]]
+key = "prefix+g"
+type = "popup"
+command = "zsh"
+width = "80%"
+height = "80%"
+
+# ─────────────────────────────────────────────────────────────────────────────
+# UI
+# ─────────────────────────────────────────────────────────────────────────────
+[ui]
+# tmux creates windows right away; don't ask for a name.
+prompt_new_tab_name = false
+
+# Status line at the bottom, like tmux's.
+tab_bar_position = "bottom"
+
+# tmux-style splits: shared dividers, no frame around the outside.
+pane_outer_borders = false
+pane_gaps = false
+
+# Same right-hand status as tmux: kube context, then time and date.
+tab_bar_right = [
+  { type = "command", command = "printf '☸ %s' \"$(kubectl config current-context 2>/dev/null)\"", interval_seconds = 5, timeout_seconds = 2 },
+  { type = "datetime", format = "%H:%M %d-%b-%y" },
+]
+tab_bar_right_separator = "  "
+
+# Agent notifications: in-app toasts, no sounds.
+[ui.toast]
+delivery = "herdr"
+
+[ui.sound]
+enabled = false

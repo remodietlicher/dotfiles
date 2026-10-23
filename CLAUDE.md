@@ -11,6 +11,7 @@ this repo are live (after reloading the relevant app):
 | `tmux/tmux.conf` | `~/.config/tmux/tmux.conf`    | tmux    |
 | `ideavim/.ideavimrc` | `~/.ideavimrc`            | IdeaVim |
 | `opencode/opencode.json` | `~/.config/opencode/opencode.json` | opencode |
+| `herdr/config.toml` | `~/.config/herdr/config.toml` | herdr (tmux alternative, mirrors `tmux.conf`) |
 | `zsh/zshrc`      | *sourced* from `~/.zshrc` (see below) | zsh |
 
 ## zsh — sourced, not symlinked
@@ -49,10 +50,13 @@ Those bytes pass through tmux untouched (as long as they don't collide with the
 `\x00` prefix) and Neovim reads them. Examples in `ghostty/config`:
 
 - `cmd+left` / `cmd+right` → `\x0f` / `\x09` → nvim `<C-o>` / `<C-i>` (jumplist)
-- `cmd+j` → `\x00z` → tmux pane zoom toggle
 - `cmd+w` → `\x1b[119;9u` (kitty-protocol Super+w) → nvim decodes as `<D-w>` →
   `Snacks.bufdelete` (close buffer). nvim 0.11 decodes the raw CSI-u bytes with
   no protocol negotiation, so this works through tmux as plain pass-through.
+- `cmd+h/l` and `cmd+j/k` → `\x1b[…;9u` → herdr `cmd+h/l` (previous/next tab)
+  and `cmd+k/j` (previous/next space), bound in `herdr/config.toml`. herdr
+  ignores a raw `\x00`-prefix sequence, so herdr bindings use CSI-u, not
+  `text:\x00…`.
 
 When adding such a binding, wire all three layers: the `text:` mapping in
 `ghostty/config`, pass-through awareness in `tmux/tmux.conf` if relevant, and the
