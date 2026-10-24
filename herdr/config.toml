@@ -100,9 +100,10 @@ tab_bar_right = [
 ]
 tab_bar_right_separator = "  "
 
-# Agent notifications: in-app toasts, no sounds.
+# Agent notifications: macOS notifications (Notification Center), plus herdr's
+# own sound when a background agent finishes or needs attention.
 [ui.toast]
-delivery = "herdr"
+delivery = "system"
 
 [ui.sound]
-enabled = false
+enabled = true

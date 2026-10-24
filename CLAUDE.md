@@ -14,6 +14,20 @@ this repo are live (after reloading the relevant app):
 | `herdr/config.toml` | `~/.config/herdr/config.toml` | herdr (tmux alternative, mirrors `tmux.conf`) |
 | `zsh/zshrc`      | *sourced* from `~/.zshrc` (see below) | zsh |
 
+## This repo is public
+
+Everything committed here is world-readable. Never put non-public information
+in it: no tokens, API keys, passwords, or private keys; no internal hostnames,
+URLs, IPs, or gateway addresses; no cluster, context, or kubeconfig names; no
+employer, client, or private repo/project names; no email addresses or other
+personal details. Read such values at runtime instead (env vars, `{env:VAR}`,
+a command's output) and keep the values themselves in un-tracked machine files
+such as `~/.zshrc.local`.
+
+Symlinked files make this easy to get wrong: an app that writes its own config
+(settings menus, onboarding, installers) writes straight into this repo. Check
+`git diff` for anything an app added before committing.
+
 ## zsh — sourced, not symlinked
 
 `zsh/zshrc` is the one config here that is **not** symlinked into place. `~/.zshrc`
