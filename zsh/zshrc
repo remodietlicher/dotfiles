@@ -40,6 +40,20 @@ export FZF_CTRL_T_COMMAND='fd --hidden=false --exclude Library'
 }
 
 # ---------------------------------------------------------------------------
+# GitHub Actions
+# ---------------------------------------------------------------------------
+# gha lists the workflow runs that haven't finished yet (queued or in progress)
+# for the repo you're in; gh resolves the repo from the git remote, so any
+# subdirectory works. Extra args go to `gh run list`, e.g. `gha -b main` or
+# `gha -w ci.yml`. `ghaw` follows a run live (prompts if several are running).
+gha() {
+  gh run list -L 50 "$@" \
+    --json status,workflowName,headBranch,event,createdAt,databaseId \
+    --template '{{$n := 0}}{{range .}}{{if ne .status "completed"}}{{$n = 1}}{{tablerow .status .workflowName .headBranch .event (timeago .createdAt) .databaseId}}{{end}}{{end}}{{if not $n}}No running workflow runs.{{"\n"}}{{end}}'
+}
+alias ghaw='gh run watch'
+
+# ---------------------------------------------------------------------------
 # Machine-local overrides — deliberately last, so it can override anything
 # above. This is the un-committed file the LiteLLM section of CLAUDE.md refers
 # to: LITELLM_BASE_URL / LITELLM_API_KEY belong there, not here.
