@@ -67,6 +67,13 @@ keybind = cmd+shift+right_bracket=unbind
 keybind = cmd+j=text:\x1b[106;9u
 keybind = cmd+k=text:\x1b[107;9u
 
+# cmd+shift+j / cmd+shift+k -> next / previous herdr agent, the same keys as
+# spaces with shift added. Kitty-protocol Super+Shift+j/k: modifier 10 =
+# 1 + shift 1 + super 8; bound as cmd+shift+j/k in herdr/config.toml.
+# Replaces Ghostty's cmd+shift+j (write the screen to a file and paste its path).
+keybind = cmd+shift+j=text:\x1b[106;10u
+keybind = cmd+shift+k=text:\x1b[107;10u
+
 # cmd+left / cmd+right -> nvim jumplist "go back" / "go forward".
 # Ghostty can't tell it's nvim, so it just forwards the raw control bytes that
 # nvim reads as <C-o> / <C-i>:  Ctrl-O = \x0f (back),  Ctrl-I = \x09 (forward,
@@ -87,6 +94,22 @@ keybind = cmd+w=text:\x1b[119;9u
 # register in herdr. Takes over macOS's cmd+h (Hide Ghostty).
 keybind = cmd+h=text:\x1b[104;9u
 keybind = cmd+l=text:\x1b[108;9u
+
+# cmd+1..9 -> herdr tab 1..9. Sent as kitty-protocol Super+digit
+# (ESC [ 49..57 ; 9 u, the digit's ASCII code) like cmd+h/l, and bound as
+# cmd+1..9 (switch_tab) in herdr/config.toml. Replaces Ghostty's own goto_tab,
+# which has nothing to do here since herdr owns the tabs. Bound by physical
+# key (digit_N): Ghostty's defaults are bound that way too, and a physical-key
+# binding beats a plain `cmd+2`, so the plain form never fires.
+keybind = cmd+digit_1=text:\x1b[49;9u
+keybind = cmd+digit_2=text:\x1b[50;9u
+keybind = cmd+digit_3=text:\x1b[51;9u
+keybind = cmd+digit_4=text:\x1b[52;9u
+keybind = cmd+digit_5=text:\x1b[53;9u
+keybind = cmd+digit_6=text:\x1b[54;9u
+keybind = cmd+digit_7=text:\x1b[55;9u
+keybind = cmd+digit_8=text:\x1b[56;9u
+keybind = cmd+digit_9=text:\x1b[57;9u
 
 # option+backspace -> delete the word before the cursor. Sends Ctrl-W (\x17),
 # which zsh, nvim insert mode and most TUIs treat as backward-kill-word, rather

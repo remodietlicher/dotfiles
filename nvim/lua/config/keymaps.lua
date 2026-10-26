@@ -58,13 +58,6 @@ vim.keymap.set({ "n", "i", "v" }, "<D-w>", function()
   Snacks.bufdelete()
 end, { desc = "Close buffer" })
 
--- Show the repo's recent GitHub Actions runs (`gh run list`, running ones on
--- top) in a float. auto_close = false keeps the output after gh exits; `q`
--- closes it. Runs from the git root so gh finds the remote.
-vim.keymap.set("n", "<leader>gA", function()
-  Snacks.terminal({ "gh", "run", "list", "-L", "15" }, { cwd = LazyVim.root.git(), auto_close = false })
-end, { desc = "GitHub Actions runs" })
-
 -- Move tab switching from LazyVim's default <leader><tab>[ / <leader><tab>]
 -- to <leader><tab>p / <leader><tab>n (previous/next, mnemonic over bracket).
 vim.keymap.del("n", "<leader><tab>[")

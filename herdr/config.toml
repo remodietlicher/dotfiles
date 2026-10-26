@@ -50,6 +50,10 @@ goto = "prefix+f"
 previous_tab = ["prefix+p", "cmd+h"]
 next_tab = ["prefix+n", "cmd+l"]
 
+# Jump to tab N: prefix + N as in tmux, or cmd+N in one stroke (Ghostty sends
+# cmd+1..9 as CSI-u).
+switch_tab = ["prefix+1..9", "cmd+1..9"]
+
 # Previous / next space in one stroke: Ghostty sends cmd+k/j as CSI-u.
 previous_workspace = "cmd+k"
 next_workspace = "cmd+j"
@@ -59,9 +63,10 @@ next_workspace = "cmd+j"
 # left Option key (ghostty `macos-option-as-alt = left`).
 switch_workspace = "prefix+alt+1..9"
 
-# Cycle through agents (unbound by default).
-next_agent = "prefix+a"
-previous_agent = "prefix+shift+a"
+# Cycle through agents (unbound by default). Ghostty sends cmd+shift+j/k as
+# CSI-u (j = next, like cmd+j for spaces).
+next_agent = ["prefix+a", "cmd+shift+j"]
+previous_agent = ["prefix+shift+a", "cmd+shift+k"]
 
 # Navigate mode (prefix + w): j/k walk the spaces list instead of focusing panes,
 # so up/down pane focus moves to J/K. h/l still focus panes left/right.

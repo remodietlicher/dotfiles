@@ -45,13 +45,73 @@ export FZF_CTRL_T_COMMAND='fd --hidden=false --exclude Library'
 # gha lists the workflow runs that haven't finished yet (queued or in progress)
 # for the repo you're in; gh resolves the repo from the git remote, so any
 # subdirectory works. Extra args go to `gh run list`, e.g. `gha -b main` or
-# `gha -w ci.yml`. `ghaw` follows a run live (prompts if several are running).
+# `gha -w ci.yml`.
 gha() {
   gh run list -L 50 "$@" \
     --json status,workflowName,headBranch,event,createdAt,databaseId \
     --template '{{$n := 0}}{{range .}}{{if ne .status "completed"}}{{$n = 1}}{{tablerow .status .workflowName .headBranch .event (timeago .createdAt) .databaseId}}{{end}}{{end}}{{if not $n}}No running workflow runs.{{"\n"}}{{end}}'
 }
-alias ghaw='gh run watch'
+
+# ghaw re-runs gha every 10 s (`-n SECS` to change) as a dashboard to leave
+# open in a tab; Ctrl-C stops it. Other args go to gha. The output is captured
+# before clearing so the screen doesn't sit blank while gh waits on the API;
+# GH_FORCE_TTY keeps gh's aligned table even though stdout is a pipe.
+ghaw() {
+  local -a interval=(-n 10)
+  zparseopts -D -E -K n:=interval
+  local out
+  while true; do
+    out=$(GH_FORCE_TTY=$COLUMNS gha "$@" 2>&1)
+    clear
+    print -r -- "$(date +%H:%M:%S) · every ${interval[-1]}s · Ctrl-C to stop"$'\n'
+    print -r -- $out
+    sleep ${interval[-1]}
+  done
+}
+
+# ---------------------------------------------------------------------------
+# Copy the last command and its output (herdr)
+# ---------------------------------------------------------------------------
+# cpl puts the previous command plus what it printed on the clipboard as
+#
+#   $ <command>
+#   <output>
+#
+# without running it again: the output comes from the pane's scrollback via
+# `herdr pane read`. herdr has no prompt marks, so cpl finds the command by its
+# text: from the bottom up, the first line that ends in it (after a space, i.e.
+# after the prompt) starts the output, and the prompt cpl was typed at ends it.
+# Breaks if a right prompt (RPROMPT) stays on the command line, or if the
+# output itself has a line ending in " <command>".
+cpl() {
+  emulate -L zsh -o extendedglob
+  if [[ -z $HERDR_PANE_ID ]]; then
+    print -u2 "cpl: not in a herdr pane"
+    return 1
+  fi
+  local cmd=${history[$((HISTCMD-1))]}
+  local last=${cmd##*$'\n'}
+  local -a lines
+  lines=("${(@f)$(herdr pane read $HERDR_PANE_ID --source recent-unwrapped --lines 5000)}") || return
+  lines=("${(@)lines%%[[:space:]]#}")
+  # The bottom row (after blank ones) is the line cpl was typed on; a
+  # multi-line prompt takes the rows above it too.
+  local end=$#lines
+  while (( end > 0 )) && [[ -z $lines[end] ]]; do (( end-- )); done
+  (( end -= ${#${(%)PS1}//[^$'\n']} ))
+  local start
+  for (( start = end - 1; start > 0; start-- )); do
+    [[ $lines[start] == *[[:space:]]"$last" ]] && break
+  done
+  if (( start < 1 )); then
+    print -u2 "cpl: can't find \`$last' in the scrollback"
+    return 1
+  fi
+  local out=${(F)lines[start+1,end-1]}
+  out=${out%%$'\n'#}
+  print -r -- "\$ $cmd"${out:+$'\n'$out} | pbcopy
+  print -u2 "cpl: copied \`$last' and its output"
+}
 
 # ---------------------------------------------------------------------------
 # Machine-local overrides — deliberately last, so it can override anything

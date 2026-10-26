@@ -71,6 +71,7 @@ Those bytes pass through tmux untouched (as long as they don't collide with the
   and `cmd+k/j` (previous/next space), bound in `herdr/config.toml`. herdr
   ignores a raw `\x00`-prefix sequence, so herdr bindings use CSI-u, not
   `text:\x00…`.
+- `cmd+1..9` → `\x1b[49..57;9u` → herdr `cmd+1..9` (`switch_tab`, tab N).
 
 When adding such a binding, wire all three layers: the `text:` mapping in
 `ghostty/config`, pass-through awareness in `tmux/tmux.conf` if relevant, and the
