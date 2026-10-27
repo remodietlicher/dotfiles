@@ -42,6 +42,10 @@ resize_pane_up = "prefix+shift+k"
 resize_pane_right = "prefix+shift+l"
 resize_mode = "prefix+shift+r"
 
+# Copy mode (vi keys, v to select, y to copy) on prefix + ', since the default
+# prefix + [ is right-Option+5 on the Swiss layout.
+copy_mode = "prefix+'"
+
 # prefix + g was the tmux scratch popup (see [[keys.command]] below), so herdr's
 # own goto moves to prefix + f.
 goto = "prefix+f"
