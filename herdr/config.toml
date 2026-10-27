@@ -88,6 +88,28 @@ command = "zsh"
 width = "80%"
 height = "80%"
 
+# Ctrl-h/j/k/l: move between panes, and between nvim splits when nvim has focus,
+# like vim-tmux-navigator in tmux. navigate.sh decides which.
+[[keys.command]]
+key = "ctrl+h"
+type = "shell"
+command = "~/code/dotfiles/herdr/navigate.sh left h"
+
+[[keys.command]]
+key = "ctrl+j"
+type = "shell"
+command = "~/code/dotfiles/herdr/navigate.sh down j"
+
+[[keys.command]]
+key = "ctrl+k"
+type = "shell"
+command = "~/code/dotfiles/herdr/navigate.sh up k"
+
+[[keys.command]]
+key = "ctrl+l"
+type = "shell"
+command = "~/code/dotfiles/herdr/navigate.sh right l"
+
 # ─────────────────────────────────────────────────────────────────────────────
 # UI
 # ─────────────────────────────────────────────────────────────────────────────

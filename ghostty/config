@@ -111,10 +111,16 @@ keybind = cmd+digit_7=text:\x1b[55;9u
 keybind = cmd+digit_8=text:\x1b[56;9u
 keybind = cmd+digit_9=text:\x1b[57;9u
 
-# option+8 / option+9 -> { and } (Swiss layout). Typed normally, herdr swallows
-# them: Ghostty reports the key to herdr as Alt+8/9, and herdr drops that instead
-# of passing { } through. Sending the characters as plain text skips herdr's key
-# decoding. Applies to both Option keys, so left Option+8/9 no longer acts as Alt.
+# Option+digit symbols on the Swiss layout: # [ ] | { } and \ (shift+option+7).
+# Typed normally, herdr swallows them: Ghostty reports the key to herdr as
+# Alt+digit, and herdr drops that instead of passing the character through.
+# Sending the characters as plain text skips herdr's key decoding. Applies to
+# both Option keys, so left Option+digit no longer acts as Alt.
+keybind = alt+digit_3=text:#
+keybind = alt+digit_5=text:[
+keybind = alt+digit_6=text:]
+keybind = alt+digit_7=text:|
+keybind = alt+shift+digit_7=text:\\
 keybind = alt+digit_8=text:{
 keybind = alt+digit_9=text:}
 
