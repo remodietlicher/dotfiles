@@ -131,6 +131,12 @@ tab_bar_right = [
 ]
 tab_bar_right_separator = "  "
 
+# Window title at the top: the focused pane's own title instead of the default
+# "{hostname}: {workspace}". A space's name is fixed when it's created and
+# doesn't follow `cd`; the pane title does, because zsh/zshrc sets it to the
+# current repo's name before every prompt.
+window_title = "{terminal_title}"
+
 # Agent notifications: macOS notifications (Notification Center), plus herdr's
 # own sound when a background agent finishes or needs attention.
 [ui.toast]

@@ -51,3 +51,8 @@ map mw mW
 map <leader>p "_dP
 nnoremap <C-j> 10<C-e>
 nnoremap <C-k> 10<C-y>
+" Option+j/k scroll 5 lines, as in nvim (nvim/lua/config/keymaps.lua).
+nnoremap <A-j> 5<C-e>
+nnoremap <A-k> 5<C-y>
+vnoremap <A-j> 5<C-e>
+vnoremap <A-k> 5<C-y>

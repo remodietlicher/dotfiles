@@ -114,6 +114,26 @@ cpl() {
 }
 
 # ---------------------------------------------------------------------------
+# Terminal title: the repo you're in
+# ---------------------------------------------------------------------------
+# Before each prompt, set the title (OSC 2) to the git repo's folder name, or
+# to the current folder's name outside a repo. herdr shows the focused pane's
+# title at the top via `window_title = "{terminal_title}"` (herdr/config.toml);
+# outside herdr, Ghostty shows it directly. Programs that set their own title
+# (e.g. Claude Code) override it while they run.
+_title_repo() {
+  local top name
+  if top=$(git rev-parse --show-toplevel 2>/dev/null); then
+    name=${top:t}
+  else
+    name=${(%):-%1~}
+  fi
+  print -rn -- $'\e]2;'"$name"$'\a'
+}
+autoload -Uz add-zsh-hook
+add-zsh-hook precmd _title_repo
+
+# ---------------------------------------------------------------------------
 # Machine-local overrides — deliberately last, so it can override anything
 # above. This is the un-committed file the LiteLLM section of CLAUDE.md refers
 # to: LITELLM_BASE_URL / LITELLM_API_KEY belong there, not here.

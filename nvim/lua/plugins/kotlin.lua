@@ -11,6 +11,15 @@
 -- baked-in date ("This build of intellij-server has expired"), which silently
 -- stops the LSP from starting. The cask tracks the latest release.
 --
+-- After every install/upgrade, strip the quarantine flag BEFORE the first run:
+--
+--   xattr -dr com.apple.quarantine /opt/homebrew/Caskroom/kotlin-lsp/<version>
+--
+-- Otherwise macOS deletes the quarantined launcher `bin/intellij-server` the
+-- first time it runs, and `kotlin-lsp` (a wrapper script that execs it) then
+-- fails with "intellij-server: No such file or directory". Fix: reinstall, then
+-- run the xattr command above.
+--
 -- nvim-lspconfig ships a built-in `kotlin_lsp` preset, so all we do here is
 -- register the server with LazyVim and let it set everything up. The explicit
 -- `cmd`/`filetypes`/`root_markers` below mirror that preset so this works even
