@@ -69,6 +69,13 @@ ghaw() {
   done
 }
 
+# ghrw <id> follows one run live until it finishes (`gh run watch`); the id is
+# the last column of gha. Without an id, gh offers the active runs to pick from.
+# Extra args go to `gh run watch`, e.g. `ghrw <id> --exit-status`.
+ghrw() {
+  gh run watch "$@"
+}
+
 # ---------------------------------------------------------------------------
 # Copy the last command and its output (herdr)
 # ---------------------------------------------------------------------------

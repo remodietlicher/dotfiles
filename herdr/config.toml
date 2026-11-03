@@ -10,6 +10,9 @@ name = "catppuccin"
 [theme.custom]
 # Same peach accent as tmux's active pane border.
 accent = "#fab387"
+# Active space / focused agent row in the sidebar: the stock row tint is hard to
+# spot, so use catppuccin's surface2, a clearly lighter neutral grey.
+active_row_bg = "#585b70"
 
 [terminal]
 # New panes/tabs open in the source pane's cwd, like tmux's `-c "#{pane_current_path}"`.
