@@ -77,6 +77,43 @@ ghrw() {
 }
 
 # ---------------------------------------------------------------------------
+# Notify when a command finishes
+# ---------------------------------------------------------------------------
+# ntf <command…> runs the command, then sends a notification saying whether it
+# succeeded and how long it took, e.g. `ntf ./gradlew build`. Inside herdr it
+# goes through `herdr notification show` (your [ui.toast] delivery and sound:
+# "done" on success, "request" on failure); outside herdr it asks Ghostty for a
+# desktop notification (OSC 777). Returns the command's exit status.
+#
+# Forgot the prefix? Type `; ntf` with no arguments as the next command (it
+# runs once the job ends) and it reports the previous command's exit status.
+#
+# Aliases don't expand after ntf (it runs "$@"); functions and binaries do. Wrap
+# a pipeline or several commands as `ntf zsh -c '…'`.
+ntf() {
+  local rc=$? start=$SECONDS what
+  if (( $# )); then
+    "$@"
+    rc=$?
+    what="$* · $(( SECONDS - start ))s"
+  else
+    what="previous command"
+  fi
+  local title sound
+  if (( rc == 0 )); then
+    title="✓ done in ${PWD:t}"; sound=done
+  else
+    title="✗ failed ($rc) in ${PWD:t}"; sound=request
+  fi
+  if [[ -n $HERDR_PANE_ID ]]; then
+    herdr notification show "$title" --body "$what" --sound $sound >/dev/null
+  else
+    printf '\e]777;notify;%s;%s\a' "$title" "$what"
+  fi
+  return $rc
+}
+
+# ---------------------------------------------------------------------------
 # Copy the last command and its output (herdr)
 # ---------------------------------------------------------------------------
 # cpl puts the previous command plus what it printed on the clipboard as
