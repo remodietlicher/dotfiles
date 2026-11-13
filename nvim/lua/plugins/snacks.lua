@@ -3,6 +3,33 @@ return {
   opts = {
     picker = {
       sources = {
+        -- <leader>n (notification history): <c-y> copies the message of the
+        -- current notification -- or of all <Tab>-marked ones -- to the system
+        -- clipboard, e.g. to paste an error into a chat or issue.
+        notifications = {
+          actions = {
+            copy_msg = function(picker)
+              local msgs = {}
+              for _, item in ipairs(picker:selected({ fallback = true })) do
+                local n = item.item
+                msgs[#msgs + 1] = ("[%s] %s%s"):format(
+                  n.level,
+                  n.title and n.title ~= "" and (n.title .. ": ") or "",
+                  n.msg
+                )
+              end
+              if #msgs == 0 then
+                return
+              end
+              vim.fn.setreg("+", table.concat(msgs, "\n\n"))
+              Snacks.notify.info(("Copied %d notification(s)"):format(#msgs))
+            end,
+          },
+          win = {
+            input = { keys = { ["<c-y>"] = { "copy_msg", mode = { "i", "n" } } } },
+            list = { keys = { ["<c-y>"] = "copy_msg" } },
+          },
+        },
         explorer = {
           -- Always show dotfiles and gitignored files in the tree.
           hidden = true,
